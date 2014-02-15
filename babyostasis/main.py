@@ -1,12 +1,6 @@
 import os
 import re
-import random
-import hashlib
-import hmac
-import json
-from string import letters
 
-from twilio.rest import TwilioRestClient
 import sendgrid
 
 import webapp2
