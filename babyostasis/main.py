@@ -31,7 +31,7 @@ class MainHandler(webapp2.RequestHandler):
 
 class TestPage(MainHandler):
 	def get(self):
-		self.write("Hi, I'm serving a static webpage!")
+		self.write("Hi, I'm serving through git!")
 
 class SendGrid(MainHandler):
 	def get(self):
@@ -41,13 +41,14 @@ class SendGrid(MainHandler):
 
 
 app = webapp2.WSGIApplication([('/', TestPage),
-							   ('/sendgrid', SendGrid),
+							                 ('/sendgrid', SendGrid),
                                ],
                               debug=True)
 
 def main():
 	from paste import httpserver
 	httpserver.serve(app, host='0.0.0.0', port='8080')
+  print("page served")
 
 if __name__ == '__main__':
 	main()
