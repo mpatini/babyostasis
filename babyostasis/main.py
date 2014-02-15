@@ -31,7 +31,7 @@ class MainHandler(webapp2.RequestHandler):
 
 class TestPage(MainHandler):
 	def get(self):
-		self.write("Hi, I'm serving!")
+		self.write("Hi, I'm serving a static webpage!")
 
 class SendGrid(MainHandler):
 	def get(self):
