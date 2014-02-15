@@ -32,8 +32,6 @@ class TestPage(MainHandler):
 
 class Alert(MainHandler):
 	def get(self):
-        # redirect to main page
-        self.redirect('/')
         # SendGrid
 		sg = sendgrid.SendGridClient('mpatini', 'footyy612')
 		message = sendgrid.Mail(to='mpatini@me.com', subject='Baby Alert', html="You're baby is too cold!", text="You're baby is too cold!", from_email='mpatini@sas.upenn.edu')
@@ -46,6 +44,8 @@ class Alert(MainHandler):
                                          to="19512883162",
                                          from_="19094522970")
         print message.sid
+        # load page
+        self.render('present.html')
 
 
 app = webapp2.WSGIApplication([('/', TestPage),
