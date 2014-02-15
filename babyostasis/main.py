@@ -5,12 +5,10 @@ import hashlib
 import hmac
 import json
 from string import letters
-from sendgrid import Sendgrid
+import sendgrid
 
 import webapp2
 import jinja2
-
-from google.appengine.ext import db
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
@@ -37,12 +35,19 @@ class TestPage(MainHandler):
 
 class SendGrid(MainHandler):
 	def get(self):
-		sg = sendgrid.Sendgrid.SendGridClient('mpatini', 'footyy612')
-		message = sendgrid.Sendgrid.Mail(to='mpatini@me.com', subject='Baby Alert', html="You're baby is too cold!", text="You're baby is too cold!", from_email='mpatini@sas.upenn.edu')
-		sg.web.send(message)
+		sg = sendgrid.SendGridClient('mpatini', 'footyy612')
+		message = sendgrid.Mail(to='mpatini@me.com', subject='Baby Alert', html="You're baby is too cold!", text="You're baby is too cold!", from_email='mpatini@sas.upenn.edu')
+		sg.send(message)
 
 
 app = webapp2.WSGIApplication([('/', TestPage),
 							   ('/sendgrid', SendGrid),
                                ],
                               debug=True)
+
+def main():
+	from paste import httpserver
+	httpserver.serve(app, host='0.0.0.0', port='8080')
+
+if __name__ == '__main__':
+	main()
