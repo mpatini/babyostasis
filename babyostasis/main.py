@@ -44,8 +44,6 @@ class Alert(MainHandler):
                                          to="19512883162",
                                          from_="19094522970")
         print message.sid
-        # load page
-        self.render('present.html')
 
 
 app = webapp2.WSGIApplication([('/', TestPage),
