@@ -5,6 +5,8 @@ import hashlib
 import hmac
 import json
 from string import letters
+
+from twilio.rest import TwilioRestClient
 import sendgrid
 
 import webapp2
@@ -31,17 +33,33 @@ class MainHandler(webapp2.RequestHandler):
 
 class TestPage(MainHandler):
   def get(self):
-		self.write("Hi, I'm serving through git!")
+		self.write("Hit /alert to cause an email/sms send")
 
-class SendGrid(MainHandler):
+class Alert(MainHandler):
 	def get(self):
-		sg = sendgrid.SendGridClient('mpatini', 'footyy612')
-		message = sendgrid.Mail(to='mpatini@me.com', subject='Baby Alert', html="You're baby is too cold!", text="You're baby is too cold!", from_email='mpatini@sas.upenn.edu')
-		sg.send(message)
+
+        # SendGrid
+    	sg = sendgrid.SendGridClient('mpatini', 'footyy612')
+    	message = sendgrid.Mail(to='mpatini@me.com', subject='Baby Alert', html="You're baby is too cold!", text="You're baby is too cold!", from_email='mpatini@sas.upenn.edu')
+    	sg.send(message)
+
+        # Twilio
+        account_sid = "ACaefb3fc1b4e90f423de6e3695886d4a0"
+        auth_token  = "31f62a7a0969c0032095e3a5fe8d0171"
+        client = TwilioRestClient(account_sid, auth_token)
+
+        message = client.messages.create(body="ALERT: you're baby is too cold!",
+            to="19512883162",
+            from_="19094522970")
+        print message.sid
+
+        # redirect
+        self.redirect("/")
+
 
 
 app = webapp2.WSGIApplication([('/', TestPage),
-							                 ('/sendgrid', SendGrid),
+							   ('/alert', Alert),
                                ],
                               debug=True)
 
