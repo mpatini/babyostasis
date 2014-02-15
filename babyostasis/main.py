@@ -45,7 +45,7 @@ class Alert(MainHandler):
                                          from_="19094522970")
         print message.sid
         # redirect to main page
-        self.redirect("/")
+        self.redirect('/')
 
 
 app = webapp2.WSGIApplication([('/', TestPage),
