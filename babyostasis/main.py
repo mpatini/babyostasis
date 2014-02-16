@@ -45,7 +45,7 @@ class MainPage(MainHandler):
         self.write("update_temp successful, ")
         #self.write(found)
 
-        if float(found) > 25.0:
+        if float(found) > 22.0:
             self.write("help, ")
             self.write(found)
             alert()
