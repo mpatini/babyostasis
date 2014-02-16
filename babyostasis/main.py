@@ -46,7 +46,7 @@ class MainPage(MainHandler):
         if found < 32:
             update_temp()
         else:
-            alert()
+            #alert()
         
         self.write(found)        
         self.render("meta.html")
