@@ -27,6 +27,7 @@ class MainHandler(webapp2.RequestHandler):
     def render(self, template, **kw):
         self.write(self.render_str(template, **kw))
 
+"""
 found = 0
 def update_temp():
     global found
@@ -36,8 +37,12 @@ def update_temp():
     m = re.search("(\d+.\d+)", data)
     if m:
         found = m.group(1)
+"""
 
 class MainPage(MainHandler):
+    def get(self):
+        self.render("present.html")
+    """
     def get(self):
         global found
 
@@ -50,6 +55,7 @@ class MainPage(MainHandler):
         else:
             self.write(found)
             alert()
+    """
     
 
         
