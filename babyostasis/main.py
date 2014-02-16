@@ -33,8 +33,8 @@ class MainPage(MainHandler):
         resp = requests.get(url = imp_url)
         #json_data = open(imp_url).read()
         jcontent = resp.content
-        jcontent = jcontent.replace('u', '\n')
-        data = json.loads(jcontent)
+        #jcontent = jcontent.replace('u', '\n')
+        data = json.dumps(jcontent)
         self.write(data)
 
 
