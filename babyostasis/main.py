@@ -46,6 +46,7 @@ class MainPage(MainHandler):
         if found < 32:
             update_temp()
         else:
+            self.write("help")
             #alert()
         
         self.write(found)        
