@@ -1,7 +1,7 @@
 import os
 import re
 from time import sleep
-import json
+import json, requests
 
 import sendgrid
 from twilio.rest import TwilioRestClient
@@ -30,8 +30,9 @@ class MainHandler(webapp2.RequestHandler):
 class MainPage(MainHandler):
     def get(self):
         imp_url = "http://agent.electricimp.com/aGOfLf9OoNcW"
-        json_data = open(imp_url).read()
-        data = json.loads(json_data)
+        resp = requests.get(url = imp_url)
+        #json_data = open(imp_url).read()
+        data = json.loads(resp.content)
         self.write(data)
 
 
