@@ -26,12 +26,12 @@ class MainHandler(webapp2.RequestHandler):
         self.write(self.render_str(template, **kw))
 
 class MainPage(MainHandler):
-  def get(self):
+    def get(self):
 		self.render('present.html')
 
 
 """
-Alert Function
+Alert Stuff
 """
 def alert():
     # SendGrid
@@ -49,7 +49,7 @@ def alert():
 
 
 class Alert(MainHandler):
-	def get(self):
+    def get(self):
         alert()
 
 
@@ -59,8 +59,8 @@ app = webapp2.WSGIApplication([('/', MainPage),
                               debug=True)
 
 def main():
-  from paste import httpserver
-  httpserver.serve(app, host='0.0.0.0', port='8080')
+    from paste import httpserver
+    httpserver.serve(app, host='0.0.0.0', port='8080')
 
 if __name__ == '__main__':
 	main()
