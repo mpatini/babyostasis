@@ -32,7 +32,10 @@ class MainPage(MainHandler):
         imp_url = "http://agent.electricimp.com/aGOfLf9OoNcW"
         resp = requests.get(url = imp_url)
         data = json.dumps(resp.content)
-        self.write(data)
+        m = re.search("(\d+.\d+)", data)
+        if m:
+            found = m.group(1)
+            self.write(found)
 
 
 """
