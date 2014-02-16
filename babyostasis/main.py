@@ -49,11 +49,7 @@ class MainPage(MainHandler):
             self.write(found)
             alert()
         
-        self.write(found)
-        sleep(10)
-        get()    
-
-        
+        self.write(found)        
 
 
 
