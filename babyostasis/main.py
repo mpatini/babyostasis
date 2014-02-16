@@ -49,7 +49,7 @@ class MainPage(MainHandler):
             alert()
         
         self.write(found)        
-
+        self.render("meta.html")
 
 
 """
