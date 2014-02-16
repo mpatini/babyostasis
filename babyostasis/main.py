@@ -33,6 +33,7 @@ class MainPage(MainHandler):
         resp = requests.get(url = imp_url)
         #json_data = open(imp_url).read()
         data = json.loads(resp.content)
+        json.dumps(data)
         self.write(data)
 
 
