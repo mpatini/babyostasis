@@ -27,7 +27,6 @@ class MainHandler(webapp2.RequestHandler):
     def render(self, template, **kw):
         self.write(self.render_str(template, **kw))
 
-"""
 found = 0
 def update_temp():
     global found
@@ -37,25 +36,21 @@ def update_temp():
     m = re.search("(\d+.\d+)", data)
     if m:
         found = m.group(1)
-"""
 
 class MainPage(MainHandler):
     def get(self):
-        self.render("present.html")
-    """
-    def get(self):
+        self.write("Again")
         global found
 
         update_temp()
                 
-        while found < 32:
-            sleep(10)
+        if found < 32:
             update_temp()
-
         else:
             self.write(found)
             alert()
-    """
+        
+        self.redirect("/")
     
 
         
@@ -68,7 +63,7 @@ Alert Stuff
 def alert():
     # SendGrid
     sg = sendgrid.SendGridClient('mpatini', 'footyy612')
-    message = sendgrid.Mail(to='mpatini@me.com', subject="You're baby is uncomfortably warm", html="Please check on your baby.", text="Please check on your baby", from_email='mpatini@sas.upenn.edu')
+    message = sendgrid.Mail(to='mpatini@me.com', subject="Baby, such heat, much danger!", html="You're baby is uncomfortably warm. Please check on your baby.", text="Please check on your baby", from_email='mpatini@sas.upenn.edu')
     sg.send(message)
     #Twilio
     account_sid = "ACaefb3fc1b4e90f423de6e3695886d4a0"
