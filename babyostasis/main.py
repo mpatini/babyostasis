@@ -43,7 +43,7 @@ class MainPage(MainHandler):
             self.write(found)
             alert()
     
-    def update_temp():
+    def update_temp(self):
         global found
         imp_url = "http://agent.electricimp.com/aGOfLf9OoNcW"
         resp = requests.get(url = imp_url)
