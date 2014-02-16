@@ -39,6 +39,7 @@ class MainPage(MainHandler):
         if m:
             found = m.group(1)
             self.write(found)
+            alert()
 
 
 
@@ -48,13 +49,13 @@ Alert Stuff
 def alert():
     # SendGrid
     sg = sendgrid.SendGridClient('mpatini', 'footyy612')
-    message = sendgrid.Mail(to='mpatini@me.com', subject='Baby Alert', html="You're baby is too cold!", text="You're baby is too cold!", from_email='mpatini@sas.upenn.edu')
+    message = sendgrid.Mail(to='mpatini@me.com', subject='Baby Alert', html=found, text=found, from_email='mpatini@sas.upenn.edu')
     sg.send(message)
     #Twilio
     account_sid = "ACaefb3fc1b4e90f423de6e3695886d4a0"
     auth_token  = "31f62a7a0969c0032095e3a5fe8d0171"
     client = TwilioRestClient(account_sid, auth_token)
-    message = client.messages.create(body="ALERT: you're baby is too warm!",
+    message = client.messages.create(body=found,
                                      to="19512883162",
                                      from_="19094522970")
     print message.sid
