@@ -27,7 +27,7 @@ class MainHandler(webapp2.RequestHandler):
 
 class TestPage(MainHandler):
   def get(self):
-		self.write("this address /alert sends alert message")
+		self.render('present.html')
 
 class Alert(MainHandler):
 	def get(self):
