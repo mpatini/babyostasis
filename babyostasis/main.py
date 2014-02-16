@@ -76,7 +76,7 @@ def alert():
     #message = client.messages.create(body="You're baby is uncomfortably warm. Please check on your baby.",
     #                                 to="19512883162",
     #                                 from_="19094522970")
-    message = client.messages.create(body="You're baby is uncomfortably warm. Please check on your baby.",
+    message = client.messages.create(body="Your baby is uncomfortably warm. Please check on your baby.",
                                      to="16179538381",
                                      from_="19094522970")
     print message.sid
