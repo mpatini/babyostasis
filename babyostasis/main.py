@@ -42,18 +42,20 @@ class MainPage(MainHandler):
         global found
 
         update_temp()
-        self.write("update_temp successful")
-        self.write(found)
+        self.write("update_temp successful, ")
+        #self.write(found)
 
-        if float(found) < 32.0:
-            self.write("help")
+        if float(found) > 32.0:
+            self.write("help, ")
             self.write(found)
+            alert()
+        #else:
+         #   self.write("help")
+          #  alert()
 
         #if found < 32:
         #    update_temp()
-        #else:
-        #    self.write("help")
-            #alert()
+        
         
         #self.write(found)        
         self.render("meta.html")
