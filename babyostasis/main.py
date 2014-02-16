@@ -27,8 +27,11 @@ class MainHandler(webapp2.RequestHandler):
     def render(self, template, **kw):
         self.write(self.render_str(template, **kw))
 
+found = 0
+
 class MainPage(MainHandler):
     def get(self):
+        global found
         imp_url = "http://agent.electricimp.com/aGOfLf9OoNcW"
         resp = requests.get(url = imp_url)
         data = json.dumps(resp.content)
@@ -36,6 +39,7 @@ class MainPage(MainHandler):
         if m:
             found = m.group(1)
             self.write(found)
+
 
 
 """
