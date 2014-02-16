@@ -32,14 +32,26 @@ found = 0
 class MainPage(MainHandler):
     def get(self):
         global found
+        
+        update_temp()
+                
+        while found < 32:
+            sleep(10)
+            update_temp()
+
+        else:
+            self.write(found)
+            alert()
+    
+    def update_temp():
+        global found
         imp_url = "http://agent.electricimp.com/aGOfLf9OoNcW"
         resp = requests.get(url = imp_url)
         data = json.dumps(resp.content)
         m = re.search("(\d+.\d+)", data)
         if m:
             found = m.group(1)
-            self.write(found)
-            alert()
+        
 
 
 
@@ -49,13 +61,13 @@ Alert Stuff
 def alert():
     # SendGrid
     sg = sendgrid.SendGridClient('mpatini', 'footyy612')
-    message = sendgrid.Mail(to='mpatini@me.com', subject='Baby Alert', html=found, text=found, from_email='mpatini@sas.upenn.edu')
+    message = sendgrid.Mail(to='mpatini@me.com', subject="You're baby is uncomfortably warm", html="Please check on your baby.", text="Please check on your baby", from_email='mpatini@sas.upenn.edu')
     sg.send(message)
     #Twilio
     account_sid = "ACaefb3fc1b4e90f423de6e3695886d4a0"
     auth_token  = "31f62a7a0969c0032095e3a5fe8d0171"
     client = TwilioRestClient(account_sid, auth_token)
-    message = client.messages.create(body=found,
+    message = client.messages.create(body="You're baby is uncomfortably warm. Please check on your baby.",
                                      to="19512883162",
                                      from_="19094522970")
     print message.sid
