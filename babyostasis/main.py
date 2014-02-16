@@ -28,7 +28,7 @@ class MainHandler(webapp2.RequestHandler):
 
 class TestPage(MainHandler):
   def get(self):
-		self.write("Hit /alert to cause an email/sms send")
+		self.render("present.html")
 
 class Alert(MainHandler):
 	def get(self):
