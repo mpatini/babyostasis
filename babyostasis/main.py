@@ -30,6 +30,14 @@ class MainHandler(webapp2.RequestHandler):
 found = 0
 
 class MainPage(MainHandler):
+    def update_temp(self):
+        global found
+        imp_url = "http://agent.electricimp.com/aGOfLf9OoNcW"
+        resp = requests.get(url = imp_url)
+        data = json.dumps(resp.content)
+        m = re.search("(\d+.\d+)", data)
+        if m:
+            found = m.group(1)
     def get(self):
         global found
         
@@ -43,14 +51,7 @@ class MainPage(MainHandler):
             self.write(found)
             alert()
     
-    def update_temp(self):
-        global found
-        imp_url = "http://agent.electricimp.com/aGOfLf9OoNcW"
-        resp = requests.get(url = imp_url)
-        data = json.dumps(resp.content)
-        m = re.search("(\d+.\d+)", data)
-        if m:
-            found = m.group(1)
+
         
 
 
