@@ -39,7 +39,6 @@ def update_temp():
 
 class MainPage(MainHandler):
     def get(self):
-        self.write("Again")
         global found
 
         update_temp()
@@ -50,6 +49,7 @@ class MainPage(MainHandler):
             self.write(found)
             alert()
         
+        self.write(found)
         self.redirect("/")
     
 
