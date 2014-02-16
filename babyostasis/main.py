@@ -50,6 +50,7 @@ class MainPage(MainHandler):
             alert()
         
         self.write(found)
+        sleep(10)
         self.redirect("/")
     
 
