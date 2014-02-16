@@ -31,10 +31,7 @@ class MainPage(MainHandler):
     def get(self):
         imp_url = "http://agent.electricimp.com/aGOfLf9OoNcW"
         resp = requests.get(url = imp_url)
-        #json_data = open(imp_url).read()
-        jcontent = resp.content
-        #jcontent = jcontent.replace('u', '\n')
-        data = json.dumps(jcontent)
+        data = json.dumps(resp.content)
         self.write(data)
 
 
