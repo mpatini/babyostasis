@@ -70,13 +70,14 @@ def alert():
     print message.sid
 
 
+"""
 class Alert(MainHandler):
     def get(self):
         alert()
+"""
 
 
 app = webapp2.WSGIApplication([('/', MainPage),
-							   ('/alert', Alert),
                                ],
                               debug=True)
 
