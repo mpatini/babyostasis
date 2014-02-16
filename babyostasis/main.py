@@ -51,8 +51,7 @@ class MainPage(MainHandler):
         
         self.write(found)
         sleep(10)
-        self.redirect("/")
-    
+        get()    
 
         
 
