@@ -47,7 +47,6 @@ class MainPage(MainHandler):
             update_temp()
         else:
             alert()
-            sleep(300)
         
         self.write(found)        
         self.render("meta.html")
